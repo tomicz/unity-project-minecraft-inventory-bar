@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryBar : MonoBehaviour
+namespace Tomicz.Inventory
 {
-    // Start is called before the first frame update
-    void Start()
+    public class InventoryBar : MonoBehaviour
     {
-        
-    }
+        [Header("Dependencies")]
+        [SerializeField] private Slot _slot = null;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        [Header("Properties")]
+        [SerializeField] private int _slotCount = 8;
+
+        private void Awake()
+        {
+            CreateInventorySlots();
+        }
+
+        private void CreateInventorySlots()
+        {
+            for (int i = 0; i < _slotCount; i++)
+            {
+                Slot slot = Instantiate(_slot, transform);
+            }
+        }
     }
 }
