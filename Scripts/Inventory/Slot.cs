@@ -69,6 +69,7 @@ namespace Tomicz.Inventory
         public void OnEndDrag(PointerEventData eventData)
         {
             _inventoryBar.DragSlot.Hide();
+            _canDropItem = false;
         }
     }
 }
