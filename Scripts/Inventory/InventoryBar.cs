@@ -4,11 +4,15 @@ namespace Tomicz.Inventory
 {
     public class InventoryBar : MonoBehaviour
     {
+        public DragSlot DragSlot => _dragSlot;
+
         [Header("Dependencies")]
         [SerializeField] private Slot _slot = null;
+        [SerializeField] private DragSlot _dragSlot = null;
 
         [Header("Properties")]
         [SerializeField] private int _slotCount = 8;
+        [SerializeField] private float _dropThreshold = 10f;
 
         private Slot[] _slotArray;
 
@@ -31,8 +35,12 @@ namespace Tomicz.Inventory
             for (int i = 0; i < _slotCount; i++)
             {
                 Slot slot = Instantiate(_slot, transform);
+                slot.SetInventory(this, _dropThreshold);
+
                 _slotArray[i] = slot;
             }
+
+            _dragSlot.Hide();
         }
 
         private int GetEmptySlotIndex()
