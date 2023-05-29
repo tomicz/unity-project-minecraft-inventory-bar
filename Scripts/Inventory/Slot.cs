@@ -12,7 +12,8 @@ namespace Tomicz.Inventory
         [Header("Dependencies")]
         [SerializeField] private Image _spriteContainer;
         [SerializeField] private ItemData _itemData;
-        [SerializeField] private InventoryBar _inventoryBar;
+
+        private InventoryBar _inventoryBar;
 
         private bool _isEmpty = true;
         private bool _canDropItem = false;
@@ -48,6 +49,7 @@ namespace Tomicz.Inventory
         public void OnBeginDrag(PointerEventData eventData)
         {
             _inventoryBar.DragSlot.Show();
+            _inventoryBar.DragSlot.SetSprite(_spriteContainer.sprite);
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -69,6 +71,7 @@ namespace Tomicz.Inventory
         public void OnEndDrag(PointerEventData eventData)
         {
             _inventoryBar.DragSlot.Hide();
+            _inventoryBar.DragSlot.SetSprite(null);
             _canDropItem = false;
         }
     }
